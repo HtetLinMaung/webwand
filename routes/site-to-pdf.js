@@ -88,7 +88,7 @@ module.exports = async (req, res) => {
     res.json({
       code: 200,
       message: "Successful.",
-      data: `/webwand/${options.image ? "images" : "pdf"}/${unique_name}.${
+      data: `/${options.image ? "images" : "pdf"}/${unique_name}.${
         options.image ? "png" : "pdf"
       }`,
     });

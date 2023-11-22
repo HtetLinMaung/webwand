@@ -20,8 +20,8 @@ if (!fs.existsSync(pdfFolderPath)) {
 }
 
 app.use(cors());
-app.use("/webwand/images", express.static(imageFolderPath));
-app.use("/webwand/pdf", express.static(pdfFolderPath));
+app.use("/images", express.static(imageFolderPath));
+app.use("/pdf", express.static(pdfFolderPath));
 app.use(express.json());
 
 app.post("/webwand/site-to-pdf", siteToPdf);
