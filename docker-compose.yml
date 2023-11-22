@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  webwand:
+    image: htetlinmaung/webwand
+    ports:
+      - "8005:3000"
+    environment:
+      - PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+    volumes:
+      - ./images:/app/images
+      - ./reports:/app/pdf
+     
+    restart: on-failure
