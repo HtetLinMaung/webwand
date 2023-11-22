@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
       format: options.format || "A4",
       path: path.join(pdfFolderPath, options.output || `${unique_name}.pdf`),
       landscape: options.landscape,
-      scale: +options.scale || "1",
+      scale: +options.scale || 1,
       margin: {
         top: options.marginTop || "0",
         bottom: options.marginBottom || "0",
