@@ -2,7 +2,7 @@ const path = require("path");
 const fs = require("fs");
 const { log } = require("starless-logger");
 const { v4 } = require("uuid");
-const { getBrowser } = require("../utils/browser");
+const { getBrowser, authenticatePage } = require("../utils/browser");
 const {
   formatDimensions,
   pdfFolderPath,
@@ -53,6 +53,9 @@ module.exports = async (req, res) => {
 
     if (options.contentType === "file") {
       content = await fs.readFile(options.content, "utf-8");
+    }
+    if (options.auth) {
+      await authenticatePage(page, options.auth);
     }
     if (content) {
       await page.setContent(content, {

@@ -11,8 +11,20 @@ exports.initPuppeteer = async () => {
     ],
     headless: "new",
   });
-  
+
   return browser;
 };
 
 exports.getBrowser = () => browser;
+
+exports.authenticatePage = async (page, auth) => {
+  if (auth.type === "basic") {
+    await page.authenticate({
+      username: auth.username,
+      password: auth.password,
+    });
+  } else if (auth.type === "token") {
+    await page.setExtraHTTPHeaders({ Authorization: `Bearer ${auth.token}` });
+  }
+  // Add more conditions for other auth types...
+};
