@@ -238,3 +238,30 @@ fetch("http://localhost:3000/webwand/submit-form", {
     // Handle the response after form submission
   });
 ```
+
+## Docker Compose Setup
+
+To deploy the WebWand microservice using Docker Compose, use the following configuration:
+
+```yaml
+webwand:
+  image: htetlinmaung/webwand
+  restart: always
+  ports:
+    - "8004:3000"
+  environment:
+    - PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+  volumes:
+    - ./images:/app/images
+    - ./reports:/app/pdf
+    - ./fonts:/usr/share/fonts/custom-fonts
+```
+
+### Configuration Details:
+
+- `Port`: The service is exposed on port 8004 on the host machine and connected to port 3000 in the container.
+- `Environment Variable`: PUPPETEER_SKIP_CHROMIUM_DOWNLOAD is set to true to use the pre-installed version of Chromium.
+- `Volumes`:
+  - `./images:/app/images`: Maps the local `images` directory to the container for storing screenshots or rendered images.
+  - `./reports:/app/pdf`: Maps the local `reports` directory to the container for storing generated PDF files.
+  - `./fonts:/usr/share/fonts/custom-fonts`: Maps a local `fonts` directory to the container, enabling the use of custom fonts.
