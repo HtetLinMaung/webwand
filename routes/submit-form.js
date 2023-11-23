@@ -11,6 +11,8 @@ module.exports = async (req, res) => {
       waitUntil = "networkidle2",
       timeout = "30000",
       auth,
+      viewPortWidth = 1366,
+      viewPortHeight = 768,
     } = req.body;
 
     const browser = getBrowser();
@@ -18,8 +20,12 @@ module.exports = async (req, res) => {
     if (auth) {
       await authenticatePage(page, auth);
     }
-    await page.goto(url, { waitUntil, timeout });
 
+    await page.goto(url, { waitUntil, timeout });
+    await page.setViewport({
+      width: viewPortWidth,
+      height: viewPortHeight,
+    });
     // Fill out the form
     for (const [name, value] of Object.entries(formData)) {
       await page.evaluate(

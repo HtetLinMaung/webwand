@@ -9,6 +9,8 @@ module.exports = async (req, res) => {
       selectors,
       waitUntil = "networkidle2",
       timeout = "30000",
+      viewPortWidth = 1366,
+      viewPortHeight = 768,
       auth,
     } = req.body;
     const browser = getBrowser();
@@ -17,7 +19,10 @@ module.exports = async (req, res) => {
       await authenticatePage(page, auth);
     }
     await page.goto(url, { waitUntil, timeout });
-
+    await page.setViewport({
+      width: viewPortWidth,
+      height: viewPortHeight,
+    });
     let scrapedData = {};
 
     for (const [key, selector] of Object.entries(selectors)) {
