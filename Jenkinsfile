@@ -18,7 +18,6 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker-registry-credentials') {
-                        app.push("htetlinmaung/webwand")
                         app.push("jenkins-build")
                     }
                 }
