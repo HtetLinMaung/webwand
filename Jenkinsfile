@@ -10,7 +10,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("htetlinmaung/webwand:jenkins-build")
+                    app = docker.build("htetlinmaung/webwand:jenkins-build")
                 }
             }
         }
