@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://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@github.com/HtetLinMaung/webwand.git'
+                git 'https://github.com/HtetLinMaung/webwand.git'
             }
         }
         stage('Build Docker Image') {
